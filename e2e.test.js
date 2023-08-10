@@ -46,7 +46,7 @@ const invalidCredentials = {
   password: 'invalid-pass',
 };
 
-describe('<PROVIDER_TITLE> -> E2E', () => {
+describe('Connect Web -> E2E', () => {
   describe('Onboard', () => {
     describe('Initialisation', () => {
       it('should initiate session with invalid authorization', async () => {

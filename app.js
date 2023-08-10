@@ -33,11 +33,11 @@ app.use(integrateProvider({
   pages: /** @type OnboardPages */ {
     index: {
 	  view: 'index',
-	  title: '<PROVIDER_TITLE> integration',
+	  title: 'Connect Web integration',
     },
     auth: {
 	  view: 'auth',
-	  title: 'Sign in to your account with <PROVIDER_TITLE>',
+	  title: 'Sign in to your account with Connect Web',
     },
     share: {
 	  view: 'share',
@@ -45,7 +45,7 @@ app.use(integrateProvider({
     },
     success: {
 	  view: 'success',
-	  title: 'You have shared your tariff with <PROVIDER_TITLE>',
+	  title: 'You have shared your tariff with Connect Web',
     },
   },
   appParams: /** @type AppParams */ {
