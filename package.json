@@ -10,8 +10,8 @@
   },
   "main": "app.js",
   "dependencies": {
-    "@flat-peak/javascript-sdk": "2.0.4",
     "@flat-peak/express-integration-sdk": "2.0.0",
+    "@flat-peak/javascript-sdk": "2.0.4",
     "body-parser": "^1.20.1",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
@@ -22,12 +22,14 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "node-fetch": "^2.6.7",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "winston": "^3.8.2",
+    "winston-cloudwatch": "^6.1.1"
   },
   "devDependencies": {
+    "@types/supertest": "^2.0.12",
     "eslint": "^8.30.0",
     "eslint-config-google": "^0.14.0",
-    "@types/supertest": "^2.0.12",
     "jest": "^29.5.0",
     "supertest": "^6.3.3"
   }
