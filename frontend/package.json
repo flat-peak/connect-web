@@ -1,0 +1,44 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
+    "flatlist-react": "^1.5.14",
+    "mui-tel-input": "^3.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "styled-components": "^5.3.6",
+    "styled-icons": "^10.47.0",
+    "use-dynamic-refs": "^1.0.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start-client": "PORT=3006 react-scripts start",
+    "dev": "node light-build.js",
+    "build": "react-scripts build && rm build/index.html",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+<div class="form-widget">
+    <form name="auth" action="" method="post" style="--accent-color: {{{ProviderAccentColor}}}">
+        <input type="hidden" name="auth" value="{{{Authorisation}}}">
+        <input type="hidden" name="state" value="{{{SharedState}}}">
+    </form>
+    <div id="root" class="form-widget__root"></div>
+</div>
+
+<script src="{{frontendEntryScript}}"></script>
+<script>
+    document.querySelector('.page').classList.add('widget-container');
+    const form = document.querySelector('form[name="auth"]');
+    bootstrap({
+        auth: "{{{Authorisation}}}",
+        state: "{{{SharedState}}}",
+        onComplete: ({auth, state, action}) => {
+            form.querySelector('input[name="auth"]').value = auth;
+            form.querySelector('input[name="state"]').value = state;
+            form.action = action;
+            form.submit();
+        }
+    });
+</script>
+

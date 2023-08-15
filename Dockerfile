@@ -2,10 +2,15 @@ FROM node:lts-alpine
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
 ARG NPM_TOKEN
-COPY [".npmrc", "package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && rm -f .npmrc && mv node_modules ../
-COPY . .
+COPY --chown=node:node [".npmrc", "package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+COPY --chown=node:node ["frontend/package.json", "frontend/package-lock.json*", "./frontend/"]
+RUN npm install --production --silent --force  \
+    && rm -f .npmrc  \
+    && mv node_modules ../ \
+    && mkdir -p /usr/src/app/frontend/node_modules/.cache  \
+    && chmod -R 777 /usr/src/app/frontend/node_modules/.cache
+COPY --chown=node:node . .
+RUN cd frontend && npm i react-scripts  --production --silent --force  && npm run build && rm -rf node_modules && cd ..
 EXPOSE 8080
-RUN chown -R node /usr/src/app
 USER node
 CMD ["npm", "start"]

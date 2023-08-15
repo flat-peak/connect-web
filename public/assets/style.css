@@ -22,11 +22,9 @@ a {
 .page {
     padding: 24px 0 12px;
     min-width: 335px;
-    max-width: 335px;
     box-sizing: border-box;
     width: 100%;
     margin: 0 auto;
-    /*padding: 20px 20px;*/
 
     font-family: 'SF Pro Display';
     font-style: normal;
@@ -35,113 +33,10 @@ a {
     line-height: 18px;
 
     color: #000000;
-}
-.title {
-    font-family: 'SF Pro Display';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 30px;
-    color: #000000;
 
-    margin: 0;
-}
-.description {
-    font-family: 'SF Pro Display';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 20px;
-    margin: 4px 0 0 0;
-    color: #000000;
-}
 
-.gdpr-description {
-    font-family: 'SF Pro Display';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    margin: 24px 0 0 0;
-    color: #000000;
-}
-
-.logo {
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-}
-
-.form {
-    border: 1px solid #666666;
-    border-radius: 10px;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 14px 16px 14px;
-    margin-top: 25px;
-}
-.form input {
-    border: none;
-    border-bottom: 1px solid #898989;
-    margin-top: 30px;
-    background: transparent;
-
-    font-family: 'SF Pro Display';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    padding-bottom: 6px;
-    border-radius: 0;
-}
-
-.form input::placeholder {
-    color: #898989;
-}
-.form button[type=reset],
-.form button[type=submit] {
-    background: var(--accent-color);
-    backdrop-filter: blur(2px);
-    border: none;
-    padding: 8px 12px;
-
-    font-family: 'SF Pro Display';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    text-align: center;
-
-    color: #FFFFFF;
-
-    flex: 1;
-    margin-top: 44px;
-}
-.form button[type=reset] {
-    background: none;
-    color: #000000;
-}
-.disclaimer {
-    margin-top: 25px;
-}
-.share-disclaimer {
-    font-size: 14px;
-    line-height: 17px;
-}
-
-.share-disclaimer li {
-    color: #0038FF;
-}
-p.additional {
-    color: rgba(77, 77, 77, 0.81);
-    font-size: 14px;
-    line-height: 16px;
-}
-
-.buttons {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    column-gap: 8px;
+    max-width: 390px;
 }

@@ -21,3 +21,5 @@
 **/values.dev.yaml
 README.md
 **/.idea
+frontend/build
+frontend/node_modules
