@@ -1,4 +1,4 @@
-app = "connect-web-provider-prod-fp"
+app = "connect-web-prod-fp"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "lhr"
