@@ -1,17 +1,18 @@
 import {Provider as StoreProvider} from 'react-redux';
 import { store } from '../lib/store';
-import Router from './Router';
 import { ThemeProvider } from "styled-components";
 import {theme} from '../lib/theme/theme';
+import Providers from '../../pages/Providers';
+import React from 'react';
 
-function App() {
+function ProvidersApp() {
   return (
     <StoreProvider store={store}>
       <ThemeProvider theme={theme}>
-        <Router/>
+        <Providers/>
       </ThemeProvider>
     </StoreProvider>
   );
 }
 
-export default App;
+export default ProvidersApp;

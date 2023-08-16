@@ -4,10 +4,19 @@ export const IntegrationContext = createContext({
   onComplete: () => {},
   setClientSchedule: () => {},
   setAuthMetaData: () => {},
+  wrapCallbackUrl: () => {},
+  unwrapCallbackUrl: () => {},
   auth: '',
-  state: '',
+  state: {},
   apiKey: ''
 });
+
+const wrappedBaseUrl = [
+  window.location.protocol,
+  '//',
+  window.location.host,
+  '/summary?callback_url='
+].join('');
 
 export const IntegrationProvider = ({onComplete, auth, state, children}) => {
     const sharedState = useRef(state);
@@ -32,6 +41,24 @@ export const IntegrationProvider = ({onComplete, auth, state, children}) => {
       sharedState.current = btoa(JSON.stringify(stateObject));
     }
 
+    const wrapCallbackUrl = () => {
+      const stateObject = JSON.parse(atob(sharedState.current));
+      stateObject.callback_url = wrappedBaseUrl + btoa(stateObject.callback_url || '');
+      sharedState.current = btoa(JSON.stringify(stateObject));
+    }
+
+    const unwrapCallbackUrl = () => {
+      const stateObject = JSON.parse(atob(sharedState.current));
+      if (stateObject.callback_url) {
+        const orig = stateObject.callback_url;
+        const basePart = stateObject.callback_url.replace(wrappedBaseUrl, '');
+        stateObject.callback_url = basePart ? atob(basePart) : '';
+
+        console.log('unwrapCallbackUrl',orig, '->', stateObject.callback_url);
+        sharedState.current = btoa(JSON.stringify(stateObject));
+      }
+    }
+
     return (
       <IntegrationContext.Provider
         value={{
@@ -39,6 +66,8 @@ export const IntegrationProvider = ({onComplete, auth, state, children}) => {
           setAuthMetaData,
           setClientSchedule,
           setProvider,
+          wrapCallbackUrl,
+          unwrapCallbackUrl,
           auth,
           state: JSON.parse(atob(sharedState.current)),
           apiKey

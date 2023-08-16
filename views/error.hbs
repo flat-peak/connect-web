@@ -4,6 +4,7 @@
 {{#if callbackUrl}}
     <form name="callback" method="post" action="{{{callbackUrl}}}">
         <input type="hidden" name="error" value="{{{error}}}"/>
+        <input type="hidden" name="auth" value="{{{Authorisation}}}">
         <input type="hidden" name="state" value="{{{PublicState}}}">
     </form>
     <script>
@@ -19,7 +20,7 @@
         window.requestAnimationFrame(() => {
             callback({
                 object: 'error',
-                type: 'integration_error',
+                type: 'Error.Integrations',
                 critical: true,
                 message: '{{{error}}}' || 'Something went wrong',
                 state: '{{{PublicState}}}'

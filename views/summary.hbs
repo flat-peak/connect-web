@@ -11,7 +11,7 @@
     document.querySelector('.page').classList.add('widget-container');
     const form = document.querySelector('form[name="auth"]');
     bootstrap({
-        mode: 'list',
+        mode: 'summary',
         auth: "{{{Authorisation}}}",
         state: "{{{SharedState}}}",
         onComplete: ({auth, state, action}) => {

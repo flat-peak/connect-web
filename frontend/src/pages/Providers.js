@@ -22,7 +22,7 @@ export default function Providers() {
   const loading = useSelector(selectLoading);
   const providers = useSelector(selectProviders);
   //const country_code = useSelector(selectCountry);
-  const {apiKey, state: {postal_address: {country_code}}, onComplete, setProvider} = useIntegration();
+  const {apiKey, state: {postal_address: {country_code}}, onComplete, wrapCallbackUrl, setProvider} = useIntegration();
   const dispatch = useDispatch();
   const [keyword, setState] = useState("");
 
@@ -53,8 +53,9 @@ export default function Providers() {
                   <TouchableOpacity
                     key={index.toString()}
                     onClick={() => {
+                      wrapCallbackUrl();
                       setProvider(item);
-                      onComplete(item.integration_settings.onboard_url)
+                      onComplete(item.integration_settings.onboard_url);
                     }}
                   >
                     <ProviderButton item={item} />

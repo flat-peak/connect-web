@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './app/ui/App';
+import ProvidersApp from './app/ui/ProvidersApp';
 import {IntegrationProvider} from './app/ui/IntegrationContext';
+import SummaryApp from './app/ui/SummaryApp';
 
-window.bootstrap = (({auth, state, apiUrl, provider, onComplete}) => {
+window.bootstrap = (({auth, state, apiUrl, mode, onComplete}) => {
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
     <IntegrationProvider
@@ -11,7 +12,7 @@ window.bootstrap = (({auth, state, apiUrl, provider, onComplete}) => {
       state={state}
       apiUrl={apiUrl}
       onComplete={onComplete}>
-      <App />
+      {mode === 'summary' ? <SummaryApp/> : <ProvidersApp />}
     </IntegrationProvider>
   );
 })

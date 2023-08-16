@@ -10,9 +10,9 @@
 }
 
 body {
-    background: #ffffff;
     user-select: none;
     margin: 0;
+    background: #EDEDED;
 }
 
 a {
@@ -20,7 +20,7 @@ a {
 }
 
 .page {
-    padding: 24px 0 12px;
+    padding: 0;
     min-width: 335px;
     box-sizing: border-box;
     width: 100%;
@@ -34,9 +34,25 @@ a {
 
     color: #000000;
 
+    background: #EDEDED;
+
 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     max-width: 390px;
+}
+
+
+.form-widget {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #EDEDED;
+}
+
+.form-widget__root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }

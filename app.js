@@ -63,14 +63,6 @@ const authMiddleware = (req, res, next) => {
   next();
 };
 
-router.get('/', (req, res) => {
-  return respondWithError(
-      req,
-      res,
-      'Missing state. Use a POST request with state and auth params.',
-  );
-});
-
 router.post('/', authMiddleware, async (req, res) => {
   const state = res.locals.state;
   res.render('list', {
@@ -81,6 +73,77 @@ router.post('/', authMiddleware, async (req, res) => {
   });
 });
 
+router.post('/summary', authMiddleware, async (req, res) => {
+  const state = res.locals.state;
+  res.render('summary', {
+    title: 'Summary',
+    Authorisation: state.getAuthorisation(),
+    SharedState: state.toString(),
+  });
+});
+
+router.post('/confirm', authMiddleware, async (req, res) => {
+  const state = res.locals.state;
+
+  const flatpeak = new FlatpeakService(
+      process.env.FLATPEAK_API_URL,
+      state.getPublicKey(),
+      (m) => console.log(m),
+  );
+
+  const data = state.getData();
+
+  const {
+    provider_id,
+    tariff_id,
+    postal_address,
+    product_id,
+    customer_id,
+    timezone,
+    devices: [device],
+  } = data;
+
+  const tariffPlan = await flatpeak.tariffs.retrieve(tariff_id);
+
+  const updatedChunk = await flatpeak.saveConnectedTariff({
+    macAddress: device.mac,
+    timezone: timezone,
+    productId: product_id,
+    customerId: customer_id,
+    providerId: provider_id,
+    tariffPlan: tariffPlan,
+    postalAddress: postal_address,
+  });
+
+  state.extend(updatedChunk);
+
+  res.render('success', {
+    title: 'success',
+    callbackUrl: state.getData().callback_url,
+    Authorisation: state.getAuthorisation(),
+    PublicState: state.toPublic().toString(),
+  });
+});
+router.post('/cancel', authMiddleware, async (req, res) => {
+  const state = res.locals.state;
+  res.render('error', {
+    title: 'Error',
+    error: 'cancel',
+    callbackUrl: state.getData().callback_url,
+    Authorisation: state.getAuthorisation(),
+    PublicState: state.toPublic().toString(),
+  });
+});
+
+router.post('/receive', authMiddleware, async (req, res) => {
+  const state = res.locals.state;
+  res.render('success', {
+    title: 'success',
+    Authorisation: state.getAuthorisation(),
+    PublicState: state.toPublic().toString(),
+  });
+});
+
 
 router.get('/api/providers', async (req, res) => {
   const {key, ...query} = req.query;
@@ -88,6 +151,23 @@ router.get('/api/providers', async (req, res) => {
 
   flatpeak.providers
       .list(query)
+      .then((result) => res.send(result));
+});
+
+router.get('/api/tariff', async (req, res) => {
+  const {key, tariffId} = req.query;
+  const flatpeak = new FlatpeakService(process.env.FLATPEAK_API_URL, key, (m) => console.log(m));
+
+  flatpeak.tariffs
+      .retrieve(tariffId)
+      .then((result) => res.send(result));
+});
+router.get('/api/provider', async (req, res) => {
+  const {key, providerId} = req.query;
+  const flatpeak = new FlatpeakService(process.env.FLATPEAK_API_URL, key, (m) => console.log(m));
+
+  flatpeak.providers
+      .retrieve(providerId)
       .then((result) => res.send(result));
 });
 
