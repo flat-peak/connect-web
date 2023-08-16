@@ -100,13 +100,13 @@ router.post('/confirm', authMiddleware, async (req, res) => {
     product_id,
     customer_id,
     timezone,
-    devices: [device],
+    devices,
   } = data;
 
   const tariffPlan = await flatpeak.tariffs.retrieve(tariff_id);
 
   const updatedChunk = await flatpeak.saveConnectedTariff({
-    macAddress: device.mac,
+    macAddress: devices?.length ? devices[0].mac : undefined,
     timezone: timezone,
     productId: product_id,
     customerId: customer_id,
