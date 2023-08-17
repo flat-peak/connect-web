@@ -33,7 +33,9 @@ const variants = {
 };
 
 export const ButtonContainer = styled.button`
-  margin-top: 24px;
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
   border: none;
   border-radius: ${({ theme }) => theme.buttonRoundness}px;
   height: ${({ size }) => (size === "small" ? 44 : 64)}px;

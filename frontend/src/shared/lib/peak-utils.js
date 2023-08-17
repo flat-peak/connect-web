@@ -63,6 +63,10 @@ export const extractPeaks = (values) => {
       type = EPeakType.PEAK;
     }
 
+    if (values.length === 1) {
+      type = EPeakType.MID;
+    }
+
     return {
       timeFrom: entry.valid_from,
       timeTo: entry.valid_to,

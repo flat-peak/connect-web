@@ -31,6 +31,8 @@ import ScheduleGraph from '../widgets/ScheduleGraph';
 import ScheduleSummary from '../widgets/ScheduleSummary';
 import TabSwitcher from '../shared/ui/TabSwitcher';
 import {useIntegration} from '../app/ui/IntegrationContext';
+import Footer from "../shared/ui/Footer";
+import Main from "../shared/ui/Main";
 
 export default function Summary() {
   const {state: {tariff_id, provider_id}, apiKey, unwrapCallbackUrl, onComplete} = useIntegration();
@@ -105,6 +107,7 @@ export default function Summary() {
           )}
 
           <Text variant={"label"}>Schedule:</Text>
+          <Main>
           {displayedSeasons.map(({ entry, side: seasonSide }, index) => {
             let monthFrom = entry.months[0];
             let monthTo = entry.months[entry.months.length - 1];
@@ -169,7 +172,8 @@ export default function Summary() {
               </div>
             );
           })}
-          <div>
+          </Main>
+          <Footer>
             <Button
               title={"Save"}
               variant="executive"
@@ -188,7 +192,7 @@ export default function Summary() {
                 onComplete('/cancel')
               }}
             />
-          </div>
+          </Footer>
         </Wrapper>
     </Page>
   );
