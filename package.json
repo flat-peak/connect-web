@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "NODE_ENV=development nodemon ./bin/www",
+    "dev:all": "npm-run-all --parallel dev:frontend dev:backend",
     "test": "jest",
-    "lintfix": "npx eslint . --fix"
+    "lintfix": "npx eslint . --fix",
+    "postinstall": "cd frontend && npm i --production --silent"
   },
   "main": "app.js",
   "dependencies": {
@@ -29,6 +32,9 @@
   },
   "devDependencies": {
     "eslint": "^8.30.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5"
   }
 }
