@@ -31,13 +31,14 @@ export default function Providers() {
   }, [keyword, country_code, dispatch, apiKey]);
 
   return (
-    <Page>
+    <Page className='block-centered'>
         <ScreenTitle title={"Select your electricity provider"} />
         <Wrapper>
           <Main>
-            <div>
+          <div className='search-block'>
               <TextInput
                 placeholder={"Search"}
+                className='search-input'
                 placeholderTextColor="#aeacac"
                 onInput={(e) => setState(e.target.value)}
                 value={keyword}
