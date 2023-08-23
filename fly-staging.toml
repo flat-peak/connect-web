@@ -13,6 +13,7 @@ kill_timeout = "5s"
 
 [env]
   CLOUDWATCH_GROUP_NAME = "/staging/app/provider/connect-web"
+  FLATPEAK_API_URL = "https://stg-api.flatpeak.energy"
 
 [[services]]
   protocol = "tcp"
