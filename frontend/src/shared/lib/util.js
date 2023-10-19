@@ -52,7 +52,7 @@ export const formatCurrency = (value, currencyCode) => {
         style: "currency",
         currency: "USD",
       }).format(Number(value));
-    case "GPB":
+    case "GBP":
       // return `£${value}`;
       return new Intl.NumberFormat("en-GB", {
         maximumSignificantDigits: 3,
