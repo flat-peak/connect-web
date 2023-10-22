@@ -41,13 +41,24 @@ a {
 
     background: #EDEDED;
 
-
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
     max-width: 390px;
 }
 
+.block-centered {
+    align-self: center;
+}
+
+.search-block {
+    text-align: -webkit-center;
+}
+
+.search-input {
+    max-width: 360px;
+}
 
 .form-widget {
     display: flex;
